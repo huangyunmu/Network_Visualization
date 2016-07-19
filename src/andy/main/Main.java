@@ -1,7 +1,6 @@
 package andy.main;
 
 import andy.GUI.*;
-import andy.core.*;
 public class Main {
 
 	/**

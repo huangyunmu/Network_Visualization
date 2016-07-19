@@ -1,26 +1,20 @@
-/*
- * Setting.java
- *
- * Created on __DATE__, __TIME__
- */
-
 package andy.GUI;
 
+import java.awt.EventQueue;
 import java.io.File;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import andy.core.*;
 
-/**
- * 
- * @author __USER__
- */
-public class Setting extends javax.swing.JFrame {
+import andy.GUI.GraphContainer;
+
+public class Setting extends JFrame {
+
 	private String linkLocation, nodeLocation, outputLocation;
 	private int countVar = 7;
 	private String errorFileMessage = "The file name is invalid, please double check!";
@@ -128,77 +122,68 @@ public class Setting extends javax.swing.JFrame {
 		});
 
 		linkLocationButton.setText("Choose file for links ");
-		linkLocationButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						linkLocationButtonActionPerformed(evt);
-					}
-				});
+		linkLocationButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				linkLocationButtonActionPerformed(evt);
+			}
+		});
 
 		nodeLocationButton.setText("Choose file  for nodes");
-		nodeLocationButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						nodeLocationButtonActionPerformed(evt);
-					}
-				});
+		nodeLocationButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				nodeLocationButtonActionPerformed(evt);
+			}
+		});
 
 		outputLocationButton.setText("Choose output location");
-		outputLocationButton
-				.addActionListener(new java.awt.event.ActionListener() {
-					public void actionPerformed(java.awt.event.ActionEvent evt) {
-						outputLocationButtonActionPerformed(evt);
-					}
-				});
+		outputLocationButton.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				outputLocationButtonActionPerformed(evt);
+			}
+		});
 
-		linkVar1.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Node Y", "Node X", "Shape", "Color", "Thickness", "Length",
-				"Link ID", "Link Name", "Comment" }));
+		linkVar1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Node Y", "Node X", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar1ActionPerformed(evt);
 			}
 		});
 
-		linkVar2.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", "Node X", "Node Y", "Shape", "Color", "Thickness",
-				"Length", "Link ID", "Link Name", "Comment" }));
+		linkVar2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Node X", "Node Y", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar2ActionPerformed(evt);
 			}
 		});
 
-		linkVar3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", "Node X", "Node Y", "Shape", "Color", "Thickness",
-				"Length", "Link ID", "Link Name", "Comment" }));
+		linkVar3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Node X", "Node Y", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar3ActionPerformed(evt);
 			}
 		});
 
-		linkVar4.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", "Node X", "Node Y", "Shape", "Color", "Thickness",
-				"Length", "Link ID", "Link Name", "Comment" }));
+		linkVar4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Node X", "Node Y", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar4ActionPerformed(evt);
 			}
 		});
 
-		linkVar5.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", "Node X", "Node Y", "Shape", "Color", "Thickness",
-				"Length", "Link ID", "Link Name", "Comment" }));
+		linkVar5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Node X", "Node Y", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar5.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar5ActionPerformed(evt);
 			}
 		});
 
-		linkVar6.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", "Node X", "Node Y", "Shape", "Color", "Thickness",
-				"Length", "Link ID", "Link Name", "Comment" }));
+		linkVar6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Node X", "Node Y", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar6.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar6ActionPerformed(evt);
@@ -207,72 +192,64 @@ public class Setting extends javax.swing.JFrame {
 
 		jLabel6.setText("Node Variable");
 
-		nodeVar1.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar1.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar1ActionPerformed(evt);
 			}
 		});
 
-		nodeVar2.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar2.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar2.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar2ActionPerformed(evt);
 			}
 		});
 
-		nodeVar3.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar3.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar3.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar3ActionPerformed(evt);
 			}
 		});
 
-		nodeVar4.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar4.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar4ActionPerformed(evt);
 			}
 		});
 
-		nodeVar5.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar5.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar5.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar5ActionPerformed(evt);
 			}
 		});
 
-		nodeVar6.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar6.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar6.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar6ActionPerformed(evt);
 			}
 		});
 
-		linkVar0.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"Node X", "Node Y", "Shape", "Color", "Thickness", "Length",
-				"Link ID", "Link Name", "Comment" }));
+		linkVar0.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Node X", "Node Y", "Shape", "Color",
+				"Thickness", "Length", "Link ID", "Link Name", "Comment" }));
 		linkVar0.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				linkVar0ActionPerformed(evt);
 			}
 		});
 
-		nodeVar0.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				" ", " NodeID", "Shape", "Color", "Size", "Name", "Comment",
-				"X", "Y", "Z" }));
+		nodeVar0.setModel(new javax.swing.DefaultComboBoxModel(
+				new String[] { " ", " NodeID", "Shape", "Color", "Size", "Name", "Comment", "X", "Y", "Z" }));
 		nodeVar0.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				nodeVar0ActionPerformed(evt);
@@ -281,8 +258,7 @@ public class Setting extends javax.swing.JFrame {
 
 		charSetaLabel.setText("Char set");
 
-		charSet.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
-				"UTF-8", "Unicode", "ANSI" }));
+		charSet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "UTF-8", "Unicode", "ANSI" }));
 
 		jLabel7.setText("Title");
 
@@ -294,399 +270,192 @@ public class Setting extends javax.swing.JFrame {
 
 		outputLocationLabel.setText("output location");
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
-				getContentPane());
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addGap(87, 87, 87)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jLabel6)
-												.addComponent(jLabel5)
-												.addComponent(isMultiple)
-												.addComponent(jLabel2)
-												.addComponent(jLabel3)
-												.addComponent(jLabel4)
-												.addComponent(jLabel7)
-												.addComponent(
-														back,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														82,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.TRAILING)
-																				.addComponent(
-																						linkVar0,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						66,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
-																				.addComponent(
-																						nodeVar0,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						66,
-																						javax.swing.GroupLayout.PREFERRED_SIZE))
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup().addGap(87, 87, 87)
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jLabel6)
+						.addComponent(jLabel5).addComponent(isMultiple).addComponent(jLabel2).addComponent(jLabel3)
+						.addComponent(jLabel4).addComponent(jLabel7).addComponent(back,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+										.addComponent(linkVar0,
+												javax.swing.GroupLayout.PREFERRED_SIZE,
+												66, javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(nodeVar0, javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+												javax.swing.GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+										.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
+												.createSequentialGroup()
+												.addComponent(linkVar1, javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+												.addGroup(layout
+														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+														.addGroup(layout.createSequentialGroup()
+																.addComponent(linkVar2,
+																		javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
 																.addPreferredGap(
 																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.LEADING,
-																				false)
-																				.addGroup(
-																						javax.swing.GroupLayout.Alignment.TRAILING,
-																						layout.createSequentialGroup()
-																								.addComponent(
-																										linkVar1,
-																										javax.swing.GroupLayout.PREFERRED_SIZE,
-																										66,
-																										javax.swing.GroupLayout.PREFERRED_SIZE)
-																								.addPreferredGap(
-																										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																								.addGroup(
-																										layout.createParallelGroup(
-																												javax.swing.GroupLayout.Alignment.LEADING)
-																												.addGroup(
-																														layout.createSequentialGroup()
-																																.addComponent(
-																																		linkVar2,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		66,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																																.addPreferredGap(
-																																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																																.addComponent(
-																																		linkVar3,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		66,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE))
-																												.addComponent(
-																														isDirected))
-																								.addPreferredGap(
-																										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																								.addGroup(
-																										layout.createParallelGroup(
-																												javax.swing.GroupLayout.Alignment.LEADING,
-																												false)
-																												.addGroup(
-																														layout.createSequentialGroup()
-																																.addComponent(
-																																		linkVar4,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		66,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																																.addPreferredGap(
-																																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																																.addComponent(
-																																		linkVar5,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		66,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE))
-																												.addGroup(
-																														layout.createSequentialGroup()
-																																.addComponent(
-																																		charSetaLabel)
-																																.addPreferredGap(
-																																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																																		Short.MAX_VALUE)
-																																.addComponent(
-																																		charSet,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																																		javax.swing.GroupLayout.PREFERRED_SIZE)))
-																								.addPreferredGap(
-																										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																								.addComponent(
-																										linkVar6,
-																										javax.swing.GroupLayout.PREFERRED_SIZE,
-																										66,
-																										javax.swing.GroupLayout.PREFERRED_SIZE)
-																								.addPreferredGap(
-																										javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-																				.addGroup(
-																						layout.createParallelGroup(
-																								javax.swing.GroupLayout.Alignment.TRAILING)
-																								.addComponent(
-																										drawFigure)
-																								.addGroup(
-																										layout.createSequentialGroup()
-																												.addComponent(
-																														nodeVar1,
-																														javax.swing.GroupLayout.PREFERRED_SIZE,
-																														66,
-																														javax.swing.GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																												.addComponent(
-																														nodeVar2,
-																														javax.swing.GroupLayout.PREFERRED_SIZE,
-																														66,
-																														javax.swing.GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																												.addComponent(
-																														nodeVar3,
-																														javax.swing.GroupLayout.PREFERRED_SIZE,
-																														66,
-																														javax.swing.GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																												.addComponent(
-																														nodeVar4,
-																														javax.swing.GroupLayout.PREFERRED_SIZE,
-																														66,
-																														javax.swing.GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																												.addComponent(
-																														nodeVar5,
-																														javax.swing.GroupLayout.PREFERRED_SIZE,
-																														66,
-																														javax.swing.GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																												.addComponent(
-																														nodeVar6,
-																														javax.swing.GroupLayout.PREFERRED_SIZE,
-																														66,
-																														javax.swing.GroupLayout.PREFERRED_SIZE)
-																												.addPreferredGap(
-																														javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
-												.addComponent(isNormalized)
-												.addComponent(
-														jScrollPane1,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														291,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.TRAILING,
-																				false)
-																				.addComponent(
-																						nodeLocationButton,
-																						javax.swing.GroupLayout.Alignment.LEADING,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						Short.MAX_VALUE)
-																				.addComponent(
-																						linkLocationButton,
-																						javax.swing.GroupLayout.Alignment.LEADING,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						Short.MAX_VALUE)
-																				.addComponent(
-																						outputLocationButton,
-																						javax.swing.GroupLayout.Alignment.LEADING,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						Short.MAX_VALUE))
-																.addGap(18, 18,
-																		18)
-																.addGroup(
-																		layout.createParallelGroup(
-																				javax.swing.GroupLayout.Alignment.LEADING)
-																				.addComponent(
-																						outputLocationLabel)
-																				.addComponent(
-																						nodeLocationLabel)
-																				.addComponent(
-																						linkLocationLabel))))
-								.addGap(50, 50, 50))
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addContainerGap(385, Short.MAX_VALUE)
-								.addComponent(jLabel1,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										99,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(355, 355, 355)));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						javax.swing.GroupLayout.Alignment.TRAILING,
-						layout.createSequentialGroup()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		jLabel1)
+																.addComponent(linkVar3,
+																		javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+																		javax.swing.GroupLayout.PREFERRED_SIZE))
+														.addComponent(isDirected))
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+												.addGroup(layout
+														.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
+																false)
+														.addGroup(layout.createSequentialGroup()
+																.addComponent(linkVar4,
+																		javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)
+																.addPreferredGap(
+																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+																.addComponent(linkVar5,
+																		javax.swing.GroupLayout.PREFERRED_SIZE, 66,
+																		javax.swing.GroupLayout.PREFERRED_SIZE))
+														.addGroup(layout.createSequentialGroup()
+																.addComponent(charSetaLabel)
 																.addPreferredGap(
 																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		40,
+																		javax.swing.GroupLayout.DEFAULT_SIZE,
 																		Short.MAX_VALUE)
-																.addComponent(
-																		jScrollPane1,
+																.addComponent(charSet,
 																		javax.swing.GroupLayout.PREFERRED_SIZE,
 																		javax.swing.GroupLayout.DEFAULT_SIZE,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addContainerGap()
-																.addComponent(
-																		jLabel7)))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel2)
-												.addComponent(
-														linkLocationButton,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														21,
+																		javax.swing.GroupLayout.PREFERRED_SIZE)))
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+												.addComponent(linkVar6, javax.swing.GroupLayout.PREFERRED_SIZE, 66,
 														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(linkLocationLabel))
-								.addGap(10, 10, 10)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.TRAILING)
-												.addComponent(jLabel3)
-												.addGroup(
-														layout.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.BASELINE)
-																.addComponent(
-																		nodeLocationButton,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		20,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addComponent(
-																		nodeLocationLabel)))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel4)
-												.addComponent(
-														outputLocationButton,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														20,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														outputLocationLabel))
-								.addGap(17, 17, 17)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(isMultiple)
-												.addComponent(isNormalized)
-												.addComponent(isDirected)
-												.addComponent(charSetaLabel)
-												.addComponent(
-														charSet,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGap(28, 28, 28)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel5)
-												.addComponent(
-														linkVar1,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														linkVar2,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														linkVar3,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														linkVar4,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														linkVar0,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														linkVar5,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														linkVar6,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jLabel6)
-												.addComponent(
-														nodeVar1,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														nodeVar0,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														nodeVar2,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														nodeVar3,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														nodeVar4,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														nodeVar5,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addComponent(
-														nodeVar6,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-										131, Short.MAX_VALUE)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
+												.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+										.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
 												.addComponent(drawFigure)
-												.addComponent(
-														back,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														25,
-														javax.swing.GroupLayout.PREFERRED_SIZE))
-								.addGap(30, 30, 30)));
+												.addGroup(layout.createSequentialGroup()
+														.addComponent(nodeVar1, javax.swing.GroupLayout.PREFERRED_SIZE,
+																66, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(nodeVar2, javax.swing.GroupLayout.PREFERRED_SIZE,
+																66, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(nodeVar3, javax.swing.GroupLayout.PREFERRED_SIZE,
+																66, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(nodeVar4, javax.swing.GroupLayout.PREFERRED_SIZE,
+																66, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(nodeVar5, javax.swing.GroupLayout.PREFERRED_SIZE,
+																66, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+														.addComponent(nodeVar6, javax.swing.GroupLayout.PREFERRED_SIZE,
+																66, javax.swing.GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(
+																javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+						.addComponent(isNormalized)
+						.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addGroup(layout.createSequentialGroup()
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+										.addComponent(nodeLocationButton, javax.swing.GroupLayout.Alignment.LEADING,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(linkLocationButton, javax.swing.GroupLayout.Alignment.LEADING,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(outputLocationButton, javax.swing.GroupLayout.Alignment.LEADING,
+												javax.swing.GroupLayout.DEFAULT_SIZE,
+												javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addGap(18, 18, 18)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+										.addComponent(outputLocationLabel).addComponent(nodeLocationLabel)
+										.addComponent(linkLocationLabel))))
+				.addGap(50, 50, 50))
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						layout.createSequentialGroup().addContainerGap(385, Short.MAX_VALUE).addComponent(jLabel1,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(355, 355, 355)));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addGroup(layout
+						.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+						.addGroup(layout.createSequentialGroup().addComponent(jLabel1)
+								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40,
+										Short.MAX_VALUE)
+								.addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(jLabel7)))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel2)
+								.addComponent(linkLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 21,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkLocationLabel))
+						.addGap(10, 10, 10)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+								.addComponent(jLabel3)
+								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+										.addComponent(nodeLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
+												javax.swing.GroupLayout.PREFERRED_SIZE)
+										.addComponent(nodeLocationLabel)))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel4)
+								.addComponent(outputLocationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(outputLocationLabel))
+						.addGap(17, 17, 17)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(isMultiple).addComponent(isNormalized).addComponent(isDirected)
+								.addComponent(charSetaLabel).addComponent(charSet,
+										javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addGap(28, 28, 28)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel5)
+								.addComponent(linkVar1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkVar2, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkVar3, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkVar4, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkVar0, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkVar5, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(linkVar6, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel6)
+								.addComponent(nodeVar1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(nodeVar0, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(nodeVar2, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(nodeVar3, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(nodeVar4, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(nodeVar5, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(nodeVar6, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(drawFigure).addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+										javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addGap(30, 30, 30)));
 
 		pack();
 	}// </editor-fold>
@@ -726,20 +495,18 @@ public class Setting extends javax.swing.JFrame {
 		// TODO add your handling code here:
 	}
 
-	private void outputLocationButtonActionPerformed(
-			java.awt.event.ActionEvent evt) {
+	private void outputLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		jfc.showDialog(new JLabel(), "Choose output location");
 		File file = jfc.getSelectedFile();
 		outputLocation = file.getAbsolutePath() + "\\";
-		System.out.println(jfc.getSelectedFile().getName());
 		this.outputLocationLabel.setText(outputLocation);
+		// System.out.println(jfc.getSelectedFile().getName());
 	}
 
-	private void nodeLocationButtonActionPerformed(
-			java.awt.event.ActionEvent evt) {
+	private void nodeLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -753,12 +520,11 @@ public class Setting extends javax.swing.JFrame {
 		} else {
 			this.nodeLocationLabel.setText(this.errorFileMessage);
 		}
-		System.out.println(jfc.getSelectedFile().getName());
+		// System.out.println(jfc.getSelectedFile().getName());
 
 	}
 
-	private void linkLocationButtonActionPerformed(
-			java.awt.event.ActionEvent evt) {
+	private void linkLocationButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		// TODO add your handling code here:
 		JFileChooser jfc = new JFileChooser();
 		jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -773,7 +539,7 @@ public class Setting extends javax.swing.JFrame {
 			this.linkLocationLabel.setText(this.errorFileMessage);
 		}
 		// for testing
-		System.out.println(jfc.getSelectedFile().getName());
+		// System.out.println(jfc.getSelectedFile().getName());
 	}
 
 	public boolean checkFilename(String testStr, int type) {
@@ -798,15 +564,13 @@ public class Setting extends javax.swing.JFrame {
 		}
 		System.out.printf("%s %s\n", splitStr[0], splitStr[1]);
 		System.out.println(this.defaultFileName[type]);
-		if (splitStr[0].equals(this.defaultFileName[type])
-				&& splitStr[1].equals("0")) {
+		if (splitStr[0].equals(this.defaultFileName[type]) && splitStr[1].equals("0")) {
 			return true;
 		}
 		return false;
 	}
 
-	private void drawFigureActionPerformed(java.awt.event.ActionEvent evt)
-			throws IOException {
+	private void drawFigureActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
 		// TODO add your handling code here:
 
 		boolean isMultiple, isNormalized, isDirected, isAutoLayout;
@@ -936,14 +700,14 @@ public class Setting extends javax.swing.JFrame {
 			return;
 		}
 		// for testing
-		System.out.println("link variables");
-		for (int i = 0; i < countVar; i++) {
-			System.out.println(linkVar[i]);
-		}
-		System.out.println("node variables");
-		for (int i = 0; i < countVar; i++) {
-			System.out.println(nodeVar[i]);
-		}
+		// System.out.println("link variables");
+		// for (int i = 0; i < countVar; i++) {
+		// System.out.println(linkVar[i]);
+		// }
+		// System.out.println("node variables");
+		// for (int i = 0; i < countVar; i++) {
+		// System.out.println(nodeVar[i]);
+		// }
 
 		System.out.printf("%s %b \n", "isMultiple", isMultiple);
 		System.out.printf("%s %b \n", "isNormalized", isNormalized);
@@ -954,17 +718,9 @@ public class Setting extends javax.swing.JFrame {
 		System.out.printf("%s %s \n", "nodeLocation", nodeLocation);
 		System.out.printf("%s %s \n", "title", title);
 		System.out.printf("%s %s \n", "charset", charSet);
-		GraphContainer myContainer = new GraphContainer(nodeVar, linkVar,
-				statusVarList, charSet, title, linkLocation, nodeLocation,
-				outputLocation);
 
-		// if (nodeLocation.equals("")) {
-		// manager.controlPre(linkLocation, outputLocation);
-		// }
-		// else{
-		// manager.controlPre(linkLocation,nodeLocation,outputLocation);
-		// }
-
+		GraphContainer myContainer = new GraphContainer(nodeVar, linkVar, statusVarList, charSet, title, linkLocation,
+				nodeLocation, outputLocation);
 	}
 
 	private void linkVar6ActionPerformed(java.awt.event.ActionEvent evt) {

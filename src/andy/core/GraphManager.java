@@ -61,14 +61,6 @@ public class GraphManager {
 		return this.graphdata.getPointID(index);
 	}
 
-	public void demo() {
-		// specifal function
-		// set the first node to red
-		this.graphdata.demo();
-		String pointid = this.getPointID(1);
-		this.drawer.setPointColor(pointid, "2");
-	}
-
 	public void setUsedPointVarList(int[] usedPointVarList) {
 		this.usedPointVarList = usedPointVarList;
 	}
@@ -223,35 +215,7 @@ public class GraphManager {
 
 	}
 
-	// public void singleControl(String linkDataFilename,
-	// String pointDataFilename, String outputLocation) throws IOException {
-	// int result1 = this.checkFilename(linkDataFilename, 0, 1);
-	// int result2 = this.checkFilename(pointDataFilename, 0, 2);
-	//
-	// if ((result1 == 0) && (result2 == 0)) {
-	// // this is a single graph
-	// // the file exist
-	// this.graphdata.linkDataInput(linkDataFilename, true);
-	// if (hasPointInfo == true) {
-	// this.graphdata.pointDataInput(pointDataFilename, true);
-	// } else {
-	// // if not point info, the program would find point by the
-	// // link
-	// this.graphdata.findPointByLink();
-	// }
-	// if (this.isNormalized == false) {
-	// this.graphdata.computeRange();
-	// }
-	// this.drawer.initialize(title, isDirected, isAutoLayout,
-	// outputLocation);
-	// this.drawGraph(this.title, this.isDirected, outputLocation, 0);
-	// } else {
-	// // the input file name is not correct
-	// System.out.println(result1);
-	// System.out.println(result2);
-	// }
-	// }
-
+	
 	public boolean multipleControl(String linkDataFilename,
 			String pointDataFilename, String outputLocation, int N)
 			throws IOException {

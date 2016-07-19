@@ -107,8 +107,7 @@ public class GraphData {
 
 	// the maximum number of points and links
 
-	public GraphData(int[] usedPointVarList, int[] usedLinkVarList,
-			String charSet) {
+	public GraphData(int[] usedPointVarList, int[] usedLinkVarList, String charSet) {
 		// used to receive data from graphmanager
 		/*
 		 * the inputs would be obtained from the GUI For link(usedLinkVarList)
@@ -151,8 +150,7 @@ public class GraphData {
 
 	// data input section
 
-	public void linkDataInput(String filename, boolean isFirstInput)
-			throws IOException {
+	public void linkDataInput(String filename, boolean isFirstInput) throws IOException {
 		/*
 		 * For link(usedLinkVarList) 0:pointXid 1:pointYid 2:shape 3:color
 		 * 4:thickness 5:length 6:linkid 7:name 8:comment 9:tag
@@ -176,12 +174,17 @@ public class GraphData {
 		Float thickness, length;
 		thickness = 0.5f;
 		length = 0.5f;
-
 		String rowData = "";
 		rowData = br.readLine();
+		System.out.println("UTF-8");
+		if (charSet.equals("UTF-8")) {
+			// ignore the first character
+			rowData = rowData.substring(1, rowData.length());
+		}
 		int numOfInput = 0;
 		while (rowData != null) {
 			// divide the rowdata with \t
+			System.out.println(rowData.length());
 			String[] splitData = rowData.split("\t");
 			// exception here when the spliter is not \t
 			int N = splitData.length;
@@ -219,7 +222,7 @@ public class GraphData {
 					length = Float.parseFloat(tempdata);
 					break;
 				case 6:
-					// 6:linkid
+					// 6:link id
 					linkid = tempdata;
 					break;
 				case 7:
@@ -238,24 +241,22 @@ public class GraphData {
 			}
 			if (isFirstInput == true) {
 				// if it is the first input create the link
-				this.addLink(pointXid, pointYid, shape, color, thickness,
-						length, linkid, name, comment);
+				this.addLink(pointXid, pointYid, shape, color, thickness, length, linkid, name, comment);
 			} else {
-				this.setLink(pointXid, pointYid, shape, color, thickness,
-						length, linkid, name, comment);
+				this.setLink(pointXid, pointYid, shape, color, thickness, length, linkid, name, comment);
 				// if not,modified the existing parameters
 			}
 			rowData = br.readLine();
 		}
 		br.close();
 	}
-	public void demo(){
+
+	public void demo() {
 		// set the first point to red
 		this.pointSet[1].setColor("2");
 	}
 
-	public void pointDataInput(String filename, boolean isFirstInput)
-			throws IOException {
+	public void pointDataInput(String filename, boolean isFirstInput) throws IOException {
 		/*
 		 * For point(usedPointVarList) 0:pointid1:shape 2:color 3:size 4:name
 		 * 5:comment 678:xyz 9:tag
@@ -275,7 +276,6 @@ public class GraphData {
 		shape = "1";
 		color = "1";
 		name = "";
-
 		size = 0.5f;
 		x = 0f;
 		y = 0f;
@@ -345,12 +345,10 @@ public class GraphData {
 			}
 			if (isFirstInput == true) {
 				// if it is the first input create the point
-				this.addPoint(pointid, shape, color, size, name, comment, x, y,
-						z);
+				this.addPoint(pointid, shape, color, size, name, comment, x, y, z);
 			} else {
 				// if not,modified the existing parameters
-				this.setPoint(pointid, shape, color, size, name, comment, x, y,
-						z);
+				this.setPoint(pointid, shape, color, size, name, comment, x, y, z);
 			}
 			rowData = br.readLine();
 		}
@@ -404,12 +402,29 @@ public class GraphData {
 		int N = this.getNumOfLink();
 		String pointXid, pointYid;
 		Set<String> tempPointSet = new HashSet<String>();
+		// tempPointSet.add("1");
+		// tempPointSet.add("2");
+		// tempPointSet.add("1");
+		// tempPointSet.add("3");
+		// System.out.println(tempPointSet.size());
 		for (int i = 1; i <= N; i++) {
 			pointXid = this.linkSet[i].getPointXid();
 			pointYid = this.linkSet[i].getPointYid();
-			// System.out.printf("%s,%s\n",pointXid,pointYid);
-			tempPointSet.add(pointYid);
+			System.out.printf("%s,%s\n", pointXid, pointYid);
 			tempPointSet.add(pointXid);
+			tempPointSet.add(pointYid);
+			// if (tempPointSet.contains(pointXid)) {
+			//
+			// } else {
+			// tempPointSet.add(pointXid);
+			// System.out.println("add " + pointXid);
+			// }
+			// if (tempPointSet.contains(pointYid)) {
+			//
+			// } else {
+			// tempPointSet.add(pointYid);
+			// System.out.println("add " + pointYid);
+			// }
 		}
 		Iterator<String> iter = tempPointSet.iterator();
 		while (iter.hasNext()) {
@@ -427,45 +442,41 @@ public class GraphData {
 			pointid = iter.next();
 			comment = pointid;
 			name = pointid;
+			System.out.print(pointid);
 			this.addPoint(pointid, shape, color, size, name, comment, x, y, z);
 		}
 	}
 
-	public void addLink(String pointXid, String pointYid, String shape,
-			String color, float thickness, float length, String linkid,
-			String name, String comment) {
+	public void addLink(String pointXid, String pointYid, String shape, String color, float thickness, float length,
+			String linkid, String name, String comment) {
 		this.numOfLink++;
-		this.linkSet[this.numOfLink] = new Link(pointXid, pointYid, shape,
-				color, thickness, length, linkid, name, comment);
+		this.linkSet[this.numOfLink] = new Link(pointXid, pointYid, shape, color, thickness, length, linkid, name,
+				comment);
 	}
 
-	public void addPoint(String pointid, String shape, String color,
-			float size, String name, String comment, float x, float y, float z) {
+	public void addPoint(String pointid, String shape, String color, float size, String name, String comment, float x,
+			float y, float z) {
 		this.numOfPoint++;
-		this.pointSet[this.numOfPoint] = new Point(pointid, shape, color, size,
-				name, comment, x, y, z);
+		this.pointSet[this.numOfPoint] = new Point(pointid, shape, color, size, name, comment, x, y, z);
 
 	}
 
-	public void setLink(String pointXid, String pointYid, String shape,
-			String color, float thickness, float length, String linkid,
-			String name, String comment) {
+	public void setLink(String pointXid, String pointYid, String shape, String color, float thickness, float length,
+			String linkid, String name, String comment) {
 		// find the link by id
 		for (int i = 1; i <= this.numOfLink; i++) {
 			if (this.linkSet[i].getLinkid().equals(linkid)) {
-				this.linkSet[i].setLink(pointXid, pointYid, shape, color,
-						thickness, length, linkid, name, comment);
+				this.linkSet[i].setLink(pointXid, pointYid, shape, color, thickness, length, linkid, name, comment);
 				break;
 			}
 		}
 	}
 
-	public void setPoint(String pointid, String shape, String color,
-			float size, String name, String comment, float x, float y, float z) {
+	public void setPoint(String pointid, String shape, String color, float size, String name, String comment, float x,
+			float y, float z) {
 		for (int i = 1; i <= this.numOfPoint; i++) {
 			if (this.pointSet[i].getId().equals(pointid)) {
-				this.pointSet[i].setPoint(pointid, shape, color, size, name,
-						comment, x, y, z);
+				this.pointSet[i].setPoint(pointid, shape, color, size, name, comment, x, y, z);
 				break;
 			}
 		}

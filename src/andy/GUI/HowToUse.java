@@ -1,25 +1,23 @@
-/*
- * HowToUse.java
- *
- * Created on __DATE__, __TIME__
- */
-
 package andy.GUI;
+
+import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-/**
- * 
- * @author __USER__
- */
-public class HowToUse extends javax.swing.JFrame {
+public class HowToUse extends JFrame{
 
+	private JFrame frame;
+
+	
+	
 	/** Creates new form HowToUse */
 	public HowToUse() {
 		initComponents();
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setVisible(true);
 	}
+
+	
 
 	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
