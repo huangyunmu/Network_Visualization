@@ -1,6 +1,7 @@
 package andy.main;
 
 import andy.GUI.*;
+
 public class Main {
 
 	/**
@@ -8,7 +9,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MainMenu menu=new MainMenu();
+		Menu menu = new Menu();
 	}
 
 }

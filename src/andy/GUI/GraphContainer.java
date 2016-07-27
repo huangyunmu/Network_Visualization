@@ -1,5 +1,6 @@
 package andy.GUI;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -20,6 +21,10 @@ import org.graphstream.ui.view.ViewerPipe;
 import andy.core.GraphManager;
 
 public class GraphContainer extends JFrame implements MouseWheelListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private GraphManager manager;
 	private DefaultGraph graph;
 	private Viewer viewer;
@@ -47,11 +52,6 @@ public class GraphContainer extends JFrame implements MouseWheelListener {
 		this.commentButton.setText((commentOption[0]));
 		this.focusNodeButton.setText(this.nodeControlOption[0]);
 
-		if (statusVarList[3] == false) {
-			// if the point provide coordination information, the
-			// auto layout should be cancelled
-		}
-		// this.setResizable(false);
 		if (statusVarList[1] == true) {
 			// is multiple
 			this.isMultiple = true;
@@ -60,18 +60,13 @@ public class GraphContainer extends JFrame implements MouseWheelListener {
 			this.isMultiple = false;
 			this.multipleGraphButtion.setVisible(false);
 		}
-
 		// for multiple graph
-
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		int xSize = ((int) tk.getScreenSize().getWidth());
 		int ySize = ((int) tk.getScreenSize().getHeight()) - 175;
-		// System.out.println(xSize);
-		// System.out.println(ySize);
 		this.setSize(xSize, ySize);
 
 		// this.setPreferredSize(new Dimension(800, 600));
-
 		BoxLayout outerLayout = new BoxLayout(this.outerContainer, BoxLayout.X_AXIS);
 		// this.outContainer.setLayout(layout);
 		// BoxLayout innerLayout1 = new BoxLayout(this.innerContainer1,
@@ -98,25 +93,37 @@ public class GraphContainer extends JFrame implements MouseWheelListener {
 		if (tag == false) {
 			String errorMessage = "Error! Please double check the file name.";
 			JOptionPane.showMessageDialog(this, errorMessage);
-			// Uncompleted
 		}
 
 		graph = (DefaultGraph) manager.getDrawer().getGraph();
 		viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+		// System.out.println(graph.getEdge("1").getAttribute("ui.style"));
+		// System.out.println(graph.getNode("1").getAttribute("ui.style"));
+		// String command = "node {shape:cross;}";
+		// graph.addAttribute("ui.stylesheet", command);
 
 		if (statusVarList[3] == true) {
 			viewer.enableAutoLayout();
 		} else {
+			// if the point provide coordination information, the
+			// auto layout should be cancelled
 			viewer.disableAutoLayout();
 		}
-		 this.view = (DefaultView) viewer.addDefaultView(false);
-//		viewer.addView(this.view);
+
+		this.view = (DefaultView) viewer.addDefaultView(false);
+
+		// this.add(this.view);
+		// viewer.addView(this.view);
 		this.innerContainer2.setPreferredSize(new Dimension(xSize - 400, ySize - 50));
-		this.innerContainer2.add(view);
+		this.innerContainer2.add((Component) view);
 		this.pack();
 		this.setVisible(true);
 		vp = viewer.newViewerPipe();
 		view.addMouseWheelListener(this);
+		// for testing
+		// String command = "node {shape:cross;}";
+		// graph.addAttribute("ui.stylesheet", command);
+
 	}
 
 	/**
@@ -307,11 +314,9 @@ public class GraphContainer extends JFrame implements MouseWheelListener {
 					+ " data sets are founded.";
 		}
 		JOptionPane.showMessageDialog(this, message);
-		// TODO add your handling code here:
 	}
 
 	private void focusNodeButtonActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
 		if (this.focusTag == false) {
 			focusTag = true;
 			clisten = new NodeClickListener(vp, view, graph, manager);

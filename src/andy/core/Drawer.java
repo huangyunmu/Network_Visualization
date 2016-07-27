@@ -2,6 +2,9 @@ package andy.core;
 
 import static org.graphstream.ui.graphicGraph.GraphPosLengthUtils.nodePosition;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
@@ -40,21 +43,6 @@ public class Drawer {
 		graph.addNode(pointid);
 	}
 
-	public void setPointColor(String pointid, String color) {
-		int index = Integer.parseInt(color);
-		Node node = graph.getNode(pointid);
-		if (index == 0) {
-			// the link is set to invisible
-			String command = "visibility-mode:" + "hidden" + ";";
-			node.addAttribute("ui.style", command);
-		} else {
-			String command = "visibility-mode:" + "normal" + ";";
-			node.addAttribute("ui.style", command);
-		}
-		String command = "fill-color:" + this.DEFAULTCOLOR[index] + ";";
-		node.addAttribute("ui.style", command);
-	}
-
 	public void setPointSize(String pointid, float normalizedSize) {
 		Node node = graph.getNode(pointid);
 		if (normalizedSize < 0) {
@@ -63,6 +51,7 @@ public class Drawer {
 			int realSize = this.BASICSIZE + (int) ((normalizedSize) * this.DIFFSIZE);
 			node.addAttribute("ui.size", realSize);
 		}
+		ArrayList<ArrayList<String>> myList = new ArrayList<ArrayList<String>>();
 	}
 
 	public void setPointSize(String pointid, String size) {
@@ -88,11 +77,41 @@ public class Drawer {
 		node.setAttribute("z", z);
 	}
 
+	public void setPointColor(String pointid, String color) {
+		int index = Integer.parseInt(color);
+		Node node = graph.getNode(pointid);
+		String command;
+		if (index == 0) {
+			// the link is set to invisible
+			command = "visibility-mode:" + "hidden" + ";";
+		} else {
+			command = "visibility-mode:" + "normal" + ";";
+		}
+		command = command + "fill-color:" + this.DEFAULTCOLOR[index] + ";";
+		node.setAttribute("ui.style", command);
+	}
+
 	public void setPointShape(String pointid, String shape) {
 		Node node = graph.getNode(pointid);
 		int index = Integer.parseInt(shape);
 		String command = "shape:" + this.DEFAULTPOINTSHAPE[index] + ";";
-		node.addAttribute("ui.style", command);
+		node.setAttribute("ui.style", command);
+	}
+
+	public void setPointStyle(String pointid, String color, String shape) {
+		int index = Integer.parseInt(color);
+		Node node = graph.getNode(pointid);
+		String command;
+		if (index == 0) {
+			// the link is set to invisible
+			command = "visibility-mode:" + "hidden" + ";";
+		} else {
+			command = "visibility-mode:" + "normal" + ";";
+		}
+		command = command + "fill-color:" + this.DEFAULTCOLOR[index] + ";";
+		index = Integer.parseInt(shape);
+		command = command + "shape:" + this.DEFAULTPOINTSHAPE[index] + ";";
+		node.setAttribute("ui.style", command);
 	}
 
 	public void setPointComment(String pointid, String comment) {
@@ -110,9 +129,12 @@ public class Drawer {
 	}
 
 	public void setLinkShape(String linkid, String shape) {
+
 		Edge edge = graph.getEdge(linkid);
 		int index = Integer.parseInt(shape);
 		String command = "shape:" + this.DEFAULTLINKSHAPE[index] + ";";
+		// System.out.println(command);
+		// edge.setAttribute("ui.style", command);
 		edge.setAttribute("ui.style", command);
 	}
 
@@ -126,7 +148,22 @@ public class Drawer {
 		} else {
 			command = command + "visibility-mode:" + "normal" + ";";
 		}
-		edge.addAttribute("ui.style", command);
+		edge.setAttribute("ui.style", command);
+	}
+
+	public void setLinkStyle(String linkid, String color, String shape) {
+		int index = Integer.parseInt(color);
+		Edge edge = graph.getEdge(linkid);
+		String command;
+		command = "fill-color:" + this.DEFAULTCOLOR[index] + ";";
+		if (index == 0) {
+			command = command + "visibility-mode:" + "hidden" + ";";
+		} else {
+			command = command + "visibility-mode:" + "normal" + ";";
+		}
+		index = Integer.parseInt(shape);
+		command = command + "shape:" + this.DEFAULTLINKSHAPE[index] + ";";
+		edge.setAttribute("ui.style", command);
 	}
 
 	public void setLinkLength(String linkid, float normalizedLength) {
@@ -155,6 +192,7 @@ public class Drawer {
 	}
 
 	public void initialize(String title, boolean isDirected, boolean isAutoLayout, String outputLocation) {
+		// enable the advanced feature
 		System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
 		this.title = title;
 		this.isDirected = isDirected;

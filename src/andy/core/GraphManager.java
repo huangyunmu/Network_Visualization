@@ -1,3 +1,4 @@
+
 package andy.core;
 
 import java.io.File;
@@ -27,8 +28,8 @@ public class GraphManager {
 	private final String DEFAULTPOINTFILENAME = "Node_0.txt";
 	private final String DEFAULTLINKFILENAME = "Link_0.txt";
 
-	public GraphManager(int[] usedPointVarList, int[] usedLinkVarList,
-			boolean[] statusVarList, String charSet, String title) {
+	public GraphManager(int[] usedPointVarList, int[] usedLinkVarList, boolean[] statusVarList, String charSet,
+			String title) {
 		/*
 		 * the inputs would be obtained from the GUI For link(usedLinkVarList)
 		 * 0:pointXid 1:pointYid 2:shape 3:color 4:thickness 5:length 6:linkid
@@ -89,8 +90,8 @@ public class GraphManager {
 		this.numOfMulGraph = numOfMulGraph;
 	}
 
-	public boolean controlPre(String linkDataFilename,
-			String pointDataFilename, String outputLocation) throws IOException {
+	public boolean controlPre(String linkDataFilename, String pointDataFilename, String outputLocation)
+			throws IOException {
 		// before call datainput control
 		// for the purpose of polymorphism
 		// there are both info for data and link
@@ -98,8 +99,7 @@ public class GraphManager {
 		return control(linkDataFilename, pointDataFilename, outputLocation);
 	}
 
-	public boolean controlPre(String linkDataFilename, String outputLocation)
-			throws IOException {
+	public boolean controlPre(String linkDataFilename, String outputLocation) throws IOException {
 		// before call datainput control
 		// for the purpose of polymorphism
 		// only info of link
@@ -109,8 +109,8 @@ public class GraphManager {
 
 	}
 
-	public boolean control(String linkDataFilename, String pointDataFilename,
-			String outputLocation) throws IOException {
+	public boolean control(String linkDataFilename, String pointDataFilename, String outputLocation)
+			throws IOException {
 
 		int result1 = this.checkFilename(linkDataFilename, 0, 1);
 		int result2 = this.checkFilename(pointDataFilename, 0, 2);
@@ -129,11 +129,7 @@ public class GraphManager {
 			if (this.isNormalized == false) {
 				this.normalizationControl(linkDataFilename, pointDataFilename);
 			}
-			// if (this.isNormalized == false) {
-			// this.graphdata.computeRange();
-			// }
-			this.drawer.initialize(title, isDirected, isAutoLayout,
-					outputLocation);
+			this.drawer.initialize(title, isDirected, isAutoLayout, outputLocation);
 			this.drawGraph(this.title, this.isDirected, outputLocation, 0);
 			// for single graph, the operation is complete
 			// for multiple graph, other procedures would be done in multiple
@@ -148,8 +144,7 @@ public class GraphManager {
 
 	}
 
-	public void normalizationControl(String linkDataFilename,
-			String pointDataFilename) throws IOException {
+	public void normalizationControl(String linkDataFilename, String pointDataFilename) throws IOException {
 		if (isMultiple == false) {
 			// single graph
 			// for single graph all data is already stored in the graph data
@@ -160,22 +155,17 @@ public class GraphManager {
 			// meanwhile detect how many graph data file exist
 			int result1, result2;
 			String pathPoint = "", pathLink = "";
-			pathLink = linkDataFilename.substring(0, linkDataFilename.length()
-					- this.DEFAULTLINKFILENAME.length());
+			pathLink = linkDataFilename.substring(0, linkDataFilename.length() - this.DEFAULTLINKFILENAME.length());
 
 			if (this.hasPointInfo) {
-				pathPoint = pointDataFilename.substring(
-						0,
-						pointDataFilename.length()
-								- this.DEFAULTPOINTFILENAME.length());
+				pathPoint = pointDataFilename.substring(0,
+						pointDataFilename.length() - this.DEFAULTPOINTFILENAME.length());
 			}
 			String currentLinkDataName, currentPointDataName;
 			int count = 1;
 			// read the data file from 1
-			currentLinkDataName = pathLink + "Link_" + String.valueOf(count)
-					+ ".txt";
-			currentPointDataName = pathPoint + "Node_" + String.valueOf(count)
-					+ ".txt";
+			currentLinkDataName = pathLink + "Link_" + String.valueOf(count) + ".txt";
+			currentPointDataName = pathPoint + "Node_" + String.valueOf(count) + ".txt";
 			result1 = this.checkFilename(currentLinkDataName, count, 1);
 			result2 = this.checkFilename(currentPointDataName, count, 2);
 			while (result1 == 0 && result2 == 0) {
@@ -186,38 +176,31 @@ public class GraphManager {
 				this.graphdata.computeRange();
 				// check next file
 				count++;
-				currentLinkDataName = pathLink + "Link_"
-						+ String.valueOf(count) + ".txt";
-				currentPointDataName = pathPoint + "Node_"
-						+ String.valueOf(count) + ".txt";
+				currentLinkDataName = pathLink + "Link_" + String.valueOf(count) + ".txt";
+				currentPointDataName = pathPoint + "Node_" + String.valueOf(count) + ".txt";
 				result1 = this.checkFilename(currentLinkDataName, count, 1);
 				result2 = this.checkFilename(currentPointDataName, count, 2);
 			}
 			this.numOfMulGraph = count;
 			// after complete the normalization, read the first data again
-			currentLinkDataName = pathLink + "Link_" + String.valueOf(0)
-					+ ".txt";
-			currentPointDataName = pathPoint + "Node_" + String.valueOf(0)
-					+ ".txt";
+			currentLinkDataName = pathLink + "Link_" + String.valueOf(0) + ".txt";
+			currentPointDataName = pathPoint + "Node_" + String.valueOf(0) + ".txt";
 			result1 = this.checkFilename(currentLinkDataName, 0, 1);
 			result2 = this.checkFilename(currentPointDataName, 0, 2);
-			if(result1 == 0 && result2 == 0){
+			if (result1 == 0 && result2 == 0) {
 				this.graphdata.linkDataInput(currentLinkDataName, false);
 				if (hasPointInfo == true) {
 					this.graphdata.pointDataInput(currentPointDataName, false);
 				}
-				
-			}	
-			else{
+
+			} else {
 				System.out.println("error");
 			}
 		}
 
 	}
 
-	
-	public boolean multipleControl(String linkDataFilename,
-			String pointDataFilename, String outputLocation, int N)
+	public boolean multipleControl(String linkDataFilename, String pointDataFilename, String outputLocation, int N)
 			throws IOException {
 		if (this.isMultiple == false) {
 			return false;
@@ -234,24 +217,18 @@ public class GraphManager {
 
 		// prepare the path
 		String pathPoint = "", pathLink = "";
-		pathLink = linkDataFilename.substring(0, linkDataFilename.length()
-				- this.DEFAULTLINKFILENAME.length());
+		pathLink = linkDataFilename.substring(0, linkDataFilename.length() - this.DEFAULTLINKFILENAME.length());
 
 		if (this.hasPointInfo) {
-			pathPoint = pointDataFilename.substring(
-					0,
-					pointDataFilename.length()
-							- this.DEFAULTPOINTFILENAME.length());
+			pathPoint = pointDataFilename.substring(0, pointDataFilename.length() - this.DEFAULTPOINTFILENAME.length());
 		}
 
 		// draw picture
 		int count = N;
 		int result1, result2;
 		String currentLinkDataName, currentPointDataName;
-		currentLinkDataName = pathLink + "Link_" + String.valueOf(count)
-				+ ".txt";
-		currentPointDataName = pathPoint + "Node_" + String.valueOf(count)
-				+ ".txt";
+		currentLinkDataName = pathLink + "Link_" + String.valueOf(count) + ".txt";
+		currentPointDataName = pathPoint + "Node_" + String.valueOf(count) + ".txt";
 		result1 = this.checkFilename(currentLinkDataName, count, 1);
 		result2 = this.checkFilename(currentPointDataName, count, 2);
 
@@ -343,8 +320,7 @@ public class GraphManager {
 		this.graphdata.showRange();
 	}
 
-	public void drawGraph(String title, boolean isDirected,
-			String outputLocation, int nthfigure) {
+	public void drawGraph(String title, boolean isDirected, String outputLocation, int nthfigure) {
 		/*
 		 * the inputs would be obtained from the GUI For link(usedLinkVarList)
 		 * 0:pointXid 1:pointYid 2:shape 3:color 4:thickness 5:length 6:linkid
@@ -383,11 +359,14 @@ public class GraphManager {
 			// System.out.println(x);
 			// add point
 
-			if (nthfigure == 0)
+			if (nthfigure == 0) {
 				this.drawer.addPoint(pointid);
-			this.drawer.setPointShape(pointid, shape);
-			this.drawer.setPointColor(pointid, color);
-			// set size
+			}
+			// If the color and shape were set individually a problem may
+			// be generated
+			this.drawer.setPointStyle(pointid, color, shape);
+			// this.drawer.setPointShape(pointid, shape);
+			// this.drawer.setPointColor(pointid, color);
 
 			if (maxSize != minSize) {
 				float normalizedSize;
@@ -396,15 +375,12 @@ public class GraphManager {
 			} else {
 				this.drawer.setPointSize(pointid, -1f);
 			}
-			// testing
-
 			this.drawer.setPointComment(pointid, comment);
 			if (this.graphdata.getNumOfPoint() > 200) {
 				// if the number of point is too large then default hide the
 				// comment information
 				this.hideComment();
 			}
-
 			this.drawer.setPointPosition(pointid, x, y);
 		}
 		// this.showAllPoints();
@@ -432,40 +408,25 @@ public class GraphManager {
 			}
 			if (minThickness != maxThickness) {
 				float normalizedThickness;
-				normalizedThickness = (thickness - minThickness)
-						/ (maxThickness - minThickness);
+				normalizedThickness = (thickness - minThickness) / (maxThickness - minThickness);
 				this.drawer.setLinkThickness(linkid, normalizedThickness);
 			}
 			if (minLength != maxLength) {
 				float normalizedLength;
-				normalizedLength = (length - minLength)
-						/ (maxLength - minLength);
+				normalizedLength = (length - minLength) / (maxLength - minLength);
 				this.drawer.setLinkLength(linkid, normalizedLength);
 			}
-			this.drawer.setLinkShape(linkid, shape);
-			this.drawer.setLinkColor(linkid, color);
+			// this.drawer.setLinkColor(linkid, color);
+			// this.drawer.setLinkShape(linkid, shape);
+			this.drawer.setLinkStyle(linkid, color, shape);
 			this.drawer.setLinkComment(linkid, comment);
-			// this.drawer.setLinkName(linkid, name);
+
 		}
-		// if (nthfigure == 0) {
-		//
-		// N=this.getNumOfLink();
-		// if(N>500)
-		// this.drawer.sleep(2000);
-		// if(N>100 && N<500)
-		// this.drawer.sleep(1000);
-		// if(N>20 && N<100)
-		// this.drawer.sleep(500);
-		// if(N<20)
-		// this.drawer.sleep(300);
-		// }
 		this.drawer.saveFile(nthfigure);
-		// add link
 	}
 
 	public void hideComment() {
 		this.drawer.hideComment();
-
 	}
 
 	public String getTitle() {

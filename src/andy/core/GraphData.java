@@ -176,21 +176,21 @@ public class GraphData {
 		length = 0.5f;
 		String rowData = "";
 		rowData = br.readLine();
-		System.out.println("UTF-8");
 		if (charSet.equals("UTF-8")) {
-			// ignore the first character
+			// ignore the first character in utf-8
 			rowData = rowData.substring(1, rowData.length());
 		}
 		int numOfInput = 0;
 		while (rowData != null) {
 			// divide the rowdata with \t
-			System.out.println(rowData.length());
+			// System.out.println(rowData.length());
 			String[] splitData = rowData.split("\t");
 			// exception here when the spliter is not \t
 			int N = splitData.length;
 			numOfInput++;
 			linkid = String.valueOf(numOfInput);
 			name = linkid;
+			comment = "";
 			// default value of link id
 			// exception here when N not equals to the previous input
 			for (int i = 0; i < N; i++) {
@@ -231,7 +231,7 @@ public class GraphData {
 					break;
 				case 8:
 					// 8:comment
-					comment = tempdata;
+					comment = comment + tempdata + " ";
 					break;
 				case 9:
 					// 9:tag
@@ -251,10 +251,10 @@ public class GraphData {
 		br.close();
 	}
 
-	public void demo() {
-		// set the first point to red
-		this.pointSet[1].setColor("2");
-	}
+	// public void demo() {
+	// // set the first point to red
+	// this.pointSet[1].setColor("2");
+	// }
 
 	public void pointDataInput(String filename, boolean isFirstInput) throws IOException {
 		/*
@@ -282,6 +282,10 @@ public class GraphData {
 		z = 0f;
 		String rowData = "";
 		rowData = br.readLine();
+		if (charSet.equals("UTF-8")) {
+			// ignore the first character in utf-8
+			rowData = rowData.substring(1, rowData.length());
+		}
 		int numOfInput = 0;
 		while (rowData != null) {
 			// divide the rowdata with \t
@@ -402,29 +406,12 @@ public class GraphData {
 		int N = this.getNumOfLink();
 		String pointXid, pointYid;
 		Set<String> tempPointSet = new HashSet<String>();
-		// tempPointSet.add("1");
-		// tempPointSet.add("2");
-		// tempPointSet.add("1");
-		// tempPointSet.add("3");
-		// System.out.println(tempPointSet.size());
 		for (int i = 1; i <= N; i++) {
 			pointXid = this.linkSet[i].getPointXid();
 			pointYid = this.linkSet[i].getPointYid();
 			System.out.printf("%s,%s\n", pointXid, pointYid);
 			tempPointSet.add(pointXid);
 			tempPointSet.add(pointYid);
-			// if (tempPointSet.contains(pointXid)) {
-			//
-			// } else {
-			// tempPointSet.add(pointXid);
-			// System.out.println("add " + pointXid);
-			// }
-			// if (tempPointSet.contains(pointYid)) {
-			//
-			// } else {
-			// tempPointSet.add(pointYid);
-			// System.out.println("add " + pointYid);
-			// }
 		}
 		Iterator<String> iter = tempPointSet.iterator();
 		while (iter.hasNext()) {
@@ -442,7 +429,6 @@ public class GraphData {
 			pointid = iter.next();
 			comment = pointid;
 			name = pointid;
-			System.out.print(pointid);
 			this.addPoint(pointid, shape, color, size, name, comment, x, y, z);
 		}
 	}
